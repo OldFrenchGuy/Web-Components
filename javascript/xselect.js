@@ -4,7 +4,7 @@
  * In order to work properly, this js file MUST be implemented with async attribute , ex :
  *          <script src="xselect.js" async></script>
  * This web component needs to have in its innerHtml a single HTML web element containing a select element.
- * This web component is not shadowed, meaning CSS styles are inherited from document styles.
+ * This web component doesn't use shadow rendering, meaning CSS styles are inherited from document styles.
  * Data are either a JSON in the data-array attribute or a json response of an ajax call from the data-url attribute
  */
 
@@ -12,13 +12,10 @@ class XSelectElement extends HTMLElement {
 
     constructor() {
         super();
-        this.$done = false;
     }
 
     connectedCallback() {
-        console.log("Xselect connectedCallback " + this.$done);
-        if (this.$done === true) return;
-        this.$done = true;
+        console.log("Xselect connectedCallback ");
 
         // Get selected options from dataset if any
         this.$selection = [];
@@ -52,7 +49,7 @@ class XSelectElement extends HTMLElement {
             this.callAjax(this.dataset.url);
         } else {
             // Error
-            this.innerHTML = "Error : Cannot load data. Neither data-array or data_url specified. ";
+            this.innerHTML = "Error : Cannot load data. data-array nor data-url specified. ";
         }
     }
 
@@ -107,10 +104,10 @@ class XSelectElement extends HTMLElement {
 
 
             // Fill the options in it with selection if any
-            var selected_id = typeof (this.$selection[menuname]) !== 'undefined' ? this.$selection[menuname] : 0;
             var currentMenu = this.$menu[menuname];
             var optkeys = Object.keys(currentMenu);
             var options = currentMenu[prev_select_id] ? currentMenu[prev_select_id] : currentMenu[optkeys[0]];
+            var selected_id = typeof (this.$selection[menuname]) !== 'undefined' ? this.$selection[menuname] : 0;
             this.fillSelectOptions(select.id, options, selected_id);
 
             // For the next menu of selected options
@@ -149,10 +146,10 @@ class XSelectElement extends HTMLElement {
         if (++i >= menunames.length) return;
 
         // Fill options in the subsequent select
-        var subSelectId = "xselect_id_" + menunames[i];
         var currentMenu = menus[menunames[i]];
         var optkeys = Object.keys(currentMenu);
         var options = currentMenu[this.value] ? currentMenu[this.value] : currentMenu[optkeys[0]];
+        var subSelectId = "xselect_id_" + menunames[i];
         this.closest('xselect-tag').fillSelectOptions(subSelectId, options, null);
 
         // DispatchEvent to all subsequent select elements
@@ -162,7 +159,7 @@ class XSelectElement extends HTMLElement {
     callAjax(url) {
         var xmlhttp;
         var self = this;
-        // compatible with IE7+, Firefox, Chrome, Opera, Safari
+        // very basic ajax call
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
