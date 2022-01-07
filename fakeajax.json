@@ -1,0 +1,78 @@
+{
+    "First": {
+        "1": {
+            "1": "Moins de 18 ans",
+            "2": "De 18 à 45 ans",
+            "3": "De 46 et plus"
+        }
+    },
+    "Second": {
+        "1": {
+            "11": "Ecole primaire",
+            "12": "Secondaire",
+            "13": "Lycée"
+        },
+        "2": {
+            "21": "En études",
+            "22": "Travail",
+            "23": "Sans"
+        },
+        "3": {
+            "22": "Travail",
+            "23": "Sans",
+            "30": "Retraite"
+        }
+    },
+    "Third": {
+        "11": {
+            "1": "Cours élémentaire",
+            "11": "Cours moyen"
+        },
+        "12": {
+            "2": "Sixième",
+            "22": "Cinquième",
+            "23": "Quatrième",
+            "24": "Troisième"
+        },
+        "13": {
+            "3": "Seconde",
+            "32": "Première",
+            "33": "Terminale"
+        },
+        "21": {
+            "4": "BTS/Technique",
+            "42": "Université",
+            "43": "Doctorat"
+        },
+        "22": {
+            "5": "Salarié",
+            "52": "Entrepreneur",
+            "53": "Freelance"
+        },
+        "23": {
+            "6": "Chômeur",
+            "62": "RSA",
+            "63": "Handicap (AAH)"
+        },
+        "30": {
+            "7": "Sans activité",
+            "72": "Bénévole",
+            "73": "Activité salariée"
+        }
+    },
+    "Fourth": {
+        "1": {
+            "0": "Aucun"
+        },
+        "6": {
+            "110": "Indemnisé",
+            "120": "Non indemnisé",
+            "130": "ASS"
+        },
+        "43": {
+            "210": "En sciences sociales",
+            "220": "En sciences politiques",
+            "230": "En médecine"
+        }
+    }
+}

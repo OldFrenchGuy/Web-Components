@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Resize Image Web Component</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="javascript/resize-image.js"></script>
+
+
+    <style>
+        .fixedDiv {
+            position: fixed;
+            top: 50px;
+            left: 10px;
+            text-align: center;
+            width: 100%;
+            background-color: rgb(42, 42, 146);
+            color: white;
+        }
+
+        .containerDiv {
+            width: 80%;
+            height: 500px;
+            border: 1px solid black;
+            margin-top: 55px;
+            /* 
+            display: flex;
+            align-items: center;
+            justify-content: center; */
+        }
+
+        .imgstyle {
+            box-shadow: 20px -10px teal;
+        }
+    </style>
+    <script>
+        function addResize(id) {
+            var i = document.getElementById(id);
+
+            var parent = i.parentNode;
+            var next = i.nextSibling;
+            parent.removeChild(i);
+
+            var n = document.createElement('img', { is: 'ctlresize-image' });
+            n.setAttribute('id', id);
+            n.src = i.src;
+
+            parent.insertBefore(n, next);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resize Image Web Component</h1>
+        <div id="myapp" contentEditable="true">
+            <div class="fixedDiv">
+                Width : <input type="text" id="txtwidth">
+                Height : <input type="text" id="txtheight">
+            </div>
+            <div class="containerDiv">
+                <img is="ctlresize-image" src="https://picsum.photos/seed/picsum/300/200"
+                    data-resizecallback='resizeCallback' />
+            </div>
+            <br><br><br>
+            <p><img is="ctlresize-image" class="imgstyle" src="https://picsum.photos/id/237/200/200"
+                    style="float: right; margin-left: 15px;" />
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, officiis? Aut non alias, ab est
+                fuga vero voluptate consequuntur porro nulla odio minima provident, nisi praesentium
+                cumque, maxime optio perspiciatis.
+                Repellendus recusandae, illum voluptas hic eligendi repudiandae reprehenderit doloribus atque.
+                Debitis
+                consectetur
+                dignissimos. Error consequuntur nobis laudantium.
+            </p>
+            <button onclick="addResize('imgDyn');">Add resizing func</button>
+            <img id='imgDyn' src="https://picsum.photos/id/145/200/300" />
+            <br><br><br><br><br><br>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    </div>
+
+</body>
+
+</html>
