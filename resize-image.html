@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="javascript/resize-image.js"></script>
 
-
     <style>
         .fixedDiv {
             position: fixed;
@@ -22,11 +21,13 @@
             width: 80%;
             height: 500px;
             border: 1px solid black;
-            margin-top: 55px;
-            /* 
+            /* margin-top: 55px; */
+        }
+
+        .hvCentered {
             display: flex;
             align-items: center;
-            justify-content: center; */
+            justify-content: center;
         }
 
         .imgstyle {
@@ -34,18 +35,23 @@
         }
     </style>
     <script>
+        function toggleCenter(from) {
+            let div = from.nextSibling.nextSibling;
+            div.classList.toggle('hvCentered');
+        }
+
         function addResize(id) {
-            var i = document.getElementById(id);
+            let i = document.getElementById(id);
+            let parent = i.parentNode;
+            let next = i.nextSibling;
 
-            var parent = i.parentNode;
-            var next = i.nextSibling;
-            parent.removeChild(i);
-
-            var n = document.createElement('img', { is: 'ctlresize-image' });
+            let n = document.createElement('img', { is: 'ctlresize-image' });
             n.setAttribute('id', id);
             n.src = i.src;
 
+            parent.removeChild(i);
             parent.insertBefore(n, next);
+            // normally i should be removed as well
         }
     </script>
 </head>
@@ -58,6 +64,7 @@
                 Width : <input type="text" id="txtwidth">
                 Height : <input type="text" id="txtheight">
             </div>
+            <button onclick="toggleCenter(this)" style="margin-top: 55px;">Toggle image H/V center</button>
             <div class="containerDiv">
                 <img is="ctlresize-image" src="https://picsum.photos/seed/picsum/300/200"
                     data-resizecallback='resizeCallback' />
@@ -65,13 +72,13 @@
             <br><br><br>
             <p><img is="ctlresize-image" class="imgstyle" src="https://picsum.photos/id/237/200/200"
                     style="float: right; margin-left: 15px;" />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, officiis? Aut non alias, ab est
-                fuga vero voluptate consequuntur porro nulla odio minima provident, nisi praesentium
-                cumque, maxime optio perspiciatis.
-                Repellendus recusandae, illum voluptas hic eligendi repudiandae reprehenderit doloribus atque.
-                Debitis
-                consectetur
-                dignissimos. Error consequuntur nobis laudantium.
+                Click on image to select it and use resize handlers.
+                <br><br>The first image shows how the resizing is contained within its parent dimensions. Use the toggle
+                image H/V center to see how the resizing works in this mode.
+                <br><br>The second image has an inline style (float: right) and a class (box-shadow).
+                <br><br>The third image can be set dynamically to the ctlresize-image, else it appears to be a regular
+                img element.
+                <br><br>Images can also be moved (contenteditable attribute on the main container).
             </p>
             <button onclick="addResize('imgDyn');">Add resizing func</button>
             <img id='imgDyn' src="https://picsum.photos/id/145/200/300" />

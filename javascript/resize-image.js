@@ -117,8 +117,8 @@ class ResizeImageElement extends HTMLImageElement {
     mouseMove(e) {
         if (this.$resizing) {
             // resize 
-            var newWidth;
-            var coef = this.x != this.$x ? 2 : 1; // in case of centered image
+            let newWidth;
+            let coef = this.x != this.$x ? 2 : 1; // in case of centered image
             if (this.$resizing == 'right') {
                 newWidth = this.$oWidth + (e.x - this.$ex) * coef;
             } else {
@@ -126,7 +126,7 @@ class ResizeImageElement extends HTMLImageElement {
             }
 
             if (newWidth >= 20) {
-                var newHeight = newWidth / this.$ratio;
+                let newHeight = newWidth / this.$ratio;
                 if (newWidth <= this.$parentWidth && newHeight <= this.$parentHeight) {
                     // resize image
                     this.width = newWidth;
@@ -144,6 +144,9 @@ class ResizeImageElement extends HTMLImageElement {
     }
 }
 
+/**
+ * Derived class to add some controls
+ */
 class CtlResizeImage extends ResizeImageElement {
 
     static get observedAttributes() { return ['width', 'height']; }
@@ -165,13 +168,13 @@ class CtlResizeImage extends ResizeImageElement {
     mouseUp(e) {
         super.mouseUp(e);
 
-        var parts = this.src.split('/');
-        var len = parts.length;
+        let parts = this.src.split('/');
+        let len = parts.length;
         parts[len - 2] = this.width;
         parts[len - 1] = this.height;
         this.src = parts.join('/');
     }
 
 }
-//window.customElements.define('resize-image', ResizeImageElement, { extends: 'img' });
+window.customElements.define('resize-image', ResizeImageElement, { extends: 'img' });
 window.customElements.define('ctlresize-image', CtlResizeImage, { extends: 'img' });
