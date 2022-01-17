@@ -51,7 +51,8 @@
 
             parent.removeChild(i);
             parent.insertBefore(n, next);
-            // normally i should be removed as well
+            // normally node i should be removed as well
+            i.remove();
         }
     </script>
 </head>
@@ -63,6 +64,10 @@
             <div class="fixedDiv">
                 Width : <input type="text" id="txtwidth">
                 Height : <input type="text" id="txtheight">
+                <button class="txtpercent" data-percent="1.05" unselectable='on'>+5%</button>
+                <button class="txtpercent" data-percent="1.5" unselectable='on'>+50%</button>
+                <br>
+                Src : <span id="txtsrc"></span>
             </div>
             <button onclick="toggleCenter(this)" style="margin-top: 55px;">Toggle image H/V center</button>
             <div class="containerDiv">
