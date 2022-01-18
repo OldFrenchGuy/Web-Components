@@ -15,6 +15,7 @@
             width: 100%;
             background-color: rgb(42, 42, 146);
             color: white;
+            padding: 10px;
         }
 
         .containerDiv {
@@ -64,12 +65,13 @@
             <div class="fixedDiv">
                 Width : <input type="text" id="txtwidth">
                 Height : <input type="text" id="txtheight">
-                <button class="txtpercent" data-percent="1.05" unselectable='on'>+5%</button>
-                <button class="txtpercent" data-percent="1.5" unselectable='on'>+50%</button>
+                <button class="btn-primary txtpercent" data-percent="1.05" unselectable='on'>+5%</button>
+                <button class="btn-primary txtpercent" data-percent="1.5" unselectable='on'>+50%</button>
                 <br>
                 Src : <span id="txtsrc"></span>
             </div>
-            <button onclick="toggleCenter(this)" style="margin-top: 55px;">Toggle image H/V center</button>
+            <button class="btn-primary" onclick="toggleCenter(this)" style="margin-top: 80px;">Toggle image H/V
+                center</button>
             <div class="containerDiv">
                 <img is="ctlresize-image" src="https://picsum.photos/seed/picsum/300/200"
                     data-resizecallback='resizeCallback' />
@@ -77,15 +79,17 @@
             <br><br><br>
             <p><img is="ctlresize-image" class="imgstyle" src="https://picsum.photos/id/237/200/200"
                     style="float: right; margin-left: 15px;" />
-                Click on image to select it and use resize handlers.
+                Click on images to select them and use resize handlers. Class CtlResizeImage also adds resolution
+                adjustment at the end of the resizing.
                 <br><br>The first image shows how the resizing is contained within its parent dimensions. Use the toggle
                 image H/V center to see how the resizing works in this mode.
                 <br><br>The second image has an inline style (float: right) and a class (box-shadow).
-                <br><br>The third image can be set dynamically to the ctlresize-image, else it appears to be a regular
+                <br><br>The third image can be set dynamically to the ctlresize-image, else it is just a regular
                 img element.
-                <br><br>Images can also be moved (contenteditable attribute on the main container).
+                <br><br>Images can also be moved (contenteditable attribute on the main container), although this is not
+                really handy to a basic user.
             </p>
-            <button onclick="addResize('imgDyn');">Add resizing func</button>
+            <button class="btn-primary" onclick="addResize('imgDyn');">Add resizing func</button>
             <img id='imgDyn' src="https://picsum.photos/id/145/200/300" />
             <br><br><br><br><br><br>
         </div>

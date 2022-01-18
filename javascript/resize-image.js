@@ -3,21 +3,16 @@
  */
 
 class ResizeImageElement extends HTMLImageElement {
+
     constructor() {
         super();
-    }
-
-    static get observedAttributes() { return ['x']; }
-
-    attributeChangedCallback() {
-        this.positionResizeHandlers();
     }
 
     connectedCallback() {
         console.log("UImage connectedCallback ");
         // Init style and tabindex attribute in order to get the onblur event
         this.style.cursor = 'pointer';
-        this.setAttribute('tabindex', 1000);
+        this.tabIndex = 1000;
         // set image click and blur events
         this.onclick = (e) => this.click(e);
         this.onblur = (e) => this.blur(e);
@@ -143,13 +138,14 @@ class CtlResizeImage extends ResizeImageElement {
     }
 
     blur(e) {
-        if (e.target == this) return;
-
         super.blur(e);
         document.getElementById('txtwidth').value = '';
         document.getElementById('txtheight').value = '';
         document.getElementById('txtsrc').innerText = '';
-        document.getElementById('txtpercent').onclick = null;
+        let ctls = document.querySelectorAll('.txtpercent');
+        ctls.forEach((el) => {
+            el.removeEventListener('click', (e) => { this.resizePercentage(e) })
+        });
     }
 
     resizeMouseUp(e) {
